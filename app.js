@@ -38,7 +38,7 @@ let spells = dsa.Spell()
 */
 
 
-const gasLimit = "2000000"
+const gasLimit = "200000"
 const gasPrice = "20";
 
 var accounts;
@@ -96,7 +96,12 @@ setAccount(()=> {
 		if(err) {
 			console.log(err)
 		} else {
-			dsa.cast(spells)
+			dsa.cast({
+				spells,
+				'gasPrice': web3.utils.toHex(web3.utils.toWei(gasPrice, 'gwei')),
+				'gas': web3.utils.toHex(gasLimit),
+				'nonce': '10'
+
 		}
 	})
 })
