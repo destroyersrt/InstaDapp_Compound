@@ -1,3 +1,6 @@
+require('dotenv').config()
+
+
 const Web3 = require('Web3')
 const DSA = require('dsa-sdk')
 
@@ -21,7 +24,7 @@ let spells = dsa.Spell()
 	BUILD FUNCTIONALITY
 
 	async function getTxnCount() {
-  		return await web3.eth.getTransactionCount(process.env.WALLET_ADDRESS);
+  		return await web3.eth.getTransactionCount(process.env.PUBLIC_ADDRESS);
 	}
 
 	async function buildWallet() {
@@ -38,7 +41,7 @@ let spells = dsa.Spell()
 */
 
 
-const gasLimit = "200000"
+const gasLimit = "2000000"
 const gasPrice = "20";
 
 var accounts;
@@ -61,14 +64,14 @@ spells.add({
 //	 Get and Set Account functionalities
 async function setAccount(callback) {
 
-	accounts = await dsa.getAccounts(process.env.WALLET_ADDRESS)
+	accounts = await dsa.getAccounts(process.env.PUBLIC_ADDRESS)
 	console.log(accounts)
 
 	const set = await dsa.setAccount({
 		"id" : accounts[0].id,
 		"address": accounts[0].address,
 		"version": '1',
-		"origin": process.env.WALLET_ADDRESS 
+		"origin": process.env.PUBLIC_ADDRESS 
 	})
 	console.log ('Account has been set !!!')
 
@@ -102,6 +105,7 @@ setAccount(()=> {
 				'gas': web3.utils.toHex(gasLimit),
 				'nonce': '10'
 
+			}).then(console.log)
 		}
 	})
 })
