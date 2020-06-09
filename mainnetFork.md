@@ -11,8 +11,6 @@ Open terminal and run
 ```javascript
 ganache-cli --fork https://mainnet.infura.io/v3/{Project_Id} --unlock {Ethereum_Address} -p {Port_Number} --networkId 1
 ```
-![alt text](https://github.com/destroyersrt/InstaDapp_Compound/blob/master/Screenshot%202020-06-09%20at%2012.19.55%20AM.png)
-
 <table class="table">
 <tr>
 <th>Parameters</th>
@@ -21,7 +19,7 @@ ganache-cli --fork https://mainnet.infura.io/v3/{Project_Id} --unlock {Ethereum_
 <tr>
 <tr>
 <td>{Project_Id}</td>
-<td>This Id comes from infura. If you don’t know about how to get this, just open infura and create a free account. After creating account add a new project and you will get the Project_Id that you need. Sample Project_Id has been shown below.
+<td>This Id comes from infura. If you don’t know about how to get this, just open infura and create a free account. After creating account add a new project and you will get the Project_Id that you need. Sample Project_Id has been shown in the image.
 </td>
 <tr>
 <tr>
@@ -34,6 +32,8 @@ ganache-cli --fork https://mainnet.infura.io/v3/{Project_Id} --unlock {Ethereum_
 <td>It is the port number on which you want to run the ganache-cli. The default port number for ganache-cli is 8545</td>
 </tr>
 </table>
+![alt text](https://github.com/destroyersrt/InstaDapp_Compound/blob/master/Screenshot%202020-06-09%20at%2012.19.55%20AM.png)
+
 
 If you want to fork mainnet at a particular block number you can do that by providing value of Block_Number after infura Project_ID
 
