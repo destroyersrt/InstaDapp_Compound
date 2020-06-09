@@ -1,6 +1,8 @@
-# Fork-Mainnet
+# Fork-Ethereum-Mainnet
 Interact with InstaDApp DSA using Forked Mainnet from your local network
 
+When you want to interact with contracts that are deployed on the Ethereum mainnet for development purpose without spending any ether you can fork the mainnet from a particular block number and then interact with that forked mainnet on your local machine.
+So, today we will take a look at how you can fork the mainnet and interact with DSA contracts and spells.
 
 **Step 1:** Forking the Ethereum Mainnet
 
@@ -9,6 +11,8 @@ Open terminal and run
 ```javascript
 ganache-cli --fork https://mainnet.infura.io/v3/{Project_Id} --unlock {Ethereum_Address} -p {Port_Number} --networkId 1
 ```
+![alt text](https://github.com/destroyersrt/InstaDapp_Compound/blob/master/Screenshot%202020-06-09%20at%2012.19.55%20AM.png)
+
 <table class="table">
 <tr>
 <th>Parameters</th>
@@ -37,30 +41,40 @@ If you want to fork mainnet at a particular block number you can do that by prov
 ganache-cli --fork https://mainnet.infura.io/v3/{Project_Id}@{Block_Number} --unlock {Ethereum_Address} -p {Port_Number} --networkId 1
 ```
 
-After running the command, it will fork the mainnet for you and run ganache
+After running the command, it will fork the mainnet for you and it will return you something like this:
+![alt text](https://github.com/destroyersrt/InstaDapp_Compound/blob/master/Screenshot%202020-06-09%20at%2012.30.06%20AM.png)
+
+And as you can see it is mentioning that it is Forked Chain and also provides details about chain like Block number you forked that mainnet from and also the network id.
 
 **Note:** If Block’s value in the Forked Chain characteristics is ‘0’ then it means that you have not been able to fork the chain properly.
 
 **Step 2:** Interacting with DSA
 
-Clone the repo on your machine and run 
+Create a new Directory on your machine and Clone this repo on your machine.
+After cloning run ```javascript npm install``` in the cloned repo directory.
 
-```javascript
-npm install
-```
 Before interacting with DSA make sure you have configured .env file which contains the private key, Ethereum address and Infura project Id.
 
-`dsa.js` is the file which whill help you interact with DSA.
-check if the port number of your ganache-cli matches with the web3 provider's host.
+Now, open `dsa.js` file and check if the port number of your ganache-cli matches with the web3 providers.
+![alt text](https://github.com/destroyersrt/InstaDapp_Compound/blob/master/Screenshot%202020-06-09%20at%201.07.52%20AM.png)
 
-The file contains different sections containing spells, create wallet, setup account and transfer which you can edit as per your needs
+Now, you can interact with the DSA by using the `dsa.js` file. If you don’t have any DSA account you can create one by uncommenting this section from `dsa.js` file.
+![alt text](https://github.com/destroyersrt/InstaDapp_Compound/blob/master/Screenshot%202020-06-09%20at%201.34.30%20PM.png)
 
-After making the required edits in `dsa.js` file. You can run the file by opening another tab in terminal and run 
+The file contains a section where you can add your spells by default it contains spells for deposit and withdraw methods of Compound Connector.
+
+File also contains methods for account setup and transfer.
+
+**Step 3:** Executing the file
+
+![alt text](https://github.com/destroyersrt/InstaDapp_Compound/blob/master/Screenshot%202020-06-09%20at%201.10.45%20AM.png)
+
+After making all the changes in the file execute the file using command:
 ```javascript
 node dsa.js
 ```
 This may take few minutes as ganache has to fetch contracts from mainnet and then work on them so be patient, if you want to know if it has stuck or not then head to the tab on console where the ganache-cli is working and check if it is making some calls.
-If you are using the default `dsa.js` file then output will contain `dsa  accounts linked to your ethereum address` and `transaction hash`
+If you are using the default `dsa.js` file then output will contain `dsa  accounts linked to your ethereum address` and `transaction hash`that `dsa.cast()` function returns 
 
 To check the transaction receipt you can follow these steps: 
 
@@ -78,13 +92,15 @@ Step 3: In the truffle console, run
 ```javascript
 receipt = await web3.eth.getTransactionReceipt({txHash})
 ```
-![alt text](https://github.com/destroyersrt/InstaDapp_Compound/blob/master/Screenshot%202020-06-09%20at%201.07.52%20AM.png)
+![alt text](https://github.com/destroyersrt/InstaDapp_Compound/blob/master/Screenshot%202020-06-09%20at%201.33.36%20PM.png)
 
+This will return you something like this, if your transaction went through.
 
 # Additional advice
 If you want to use any particular token then you can unlock address which holds that token and you can get list of all token holders on 
 ethplorer.
 
 If you encounter error saying : “Error: Returned error: Returned error: project ID does not have access to archive state”. Trying reloading the ganache-cli as this will most probably fix this.
+![alt text](https://github.com/destroyersrt/InstaDapp_Compound/blob/master/Screenshot%202020-06-09%20at%201.33.05%20PM.png)
 
 **Note:** This is not the best way to interact with DSA as you might face a lot of errors in the process of interacting on forked mainnet. The best way is still the Ethereum Mainnet.
