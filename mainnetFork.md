@@ -78,7 +78,7 @@ Step 3: In the truffle console, run
 ```javascript
 receipt = await web3.eth.getTransactionReceipt({txHash})
 ```
-![alt text](file:///Users/adityasharma/Desktop/Screenshot%202020-06-09%20at%201.33.36%20PM.png)
+![alt text](https://github.com/destroyersrt/InstaDapp_Compound/blob/master/Screenshot%202020-06-09%20at%201.07.52%20AM.png)
 
 
 # Additional advice
